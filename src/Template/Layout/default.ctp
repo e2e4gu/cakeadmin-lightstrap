@@ -33,6 +33,9 @@ $this->assign('title', $title);
     <?= $this->Html->script('LightStrap.jquery.min.js') ?>
     <?= $this->Html->script('LightStrap.bootstrap.min.js') ?>
     <?= $this->Html->script('LightStrap.main.js') ?>
+    <?= $this->Html->script('LightStrap.select2.js') ?>
+    <?= $this->Html->script('LightStrap.select2_init.js') ?>
+    <?= $this->Html->script('LightStrap.ckeditor/ckeditor.js') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
