@@ -30,6 +30,7 @@ $this->assign('title', $title);
     <?= (Configure::read('CA.LightStrap.subtheme') !== '') ? $this->Html->css('LightStrap.themes/' . strtolower(Configure::read('CA.LightStrap.subtheme')) . '/bootstrap.min.css') : $this->Html->css('LightStrap.bootstrap.min.css'); ?>
     <?= $this->Html->css('LightStrap.font-awesome.min.css') ?>
     <?= $this->Html->css('LightStrap.main') ?>
+    <?= $this->Html->css('LightStrap.select2') ?>
     <?= $this->Html->script('LightStrap.jquery.min.js') ?>
     <?= $this->Html->script('LightStrap.bootstrap.min.js') ?>
     <?= $this->Html->script('LightStrap.main.js') ?>

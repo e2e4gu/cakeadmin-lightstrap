@@ -12,3 +12,14 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
+use Cake\Routing\Router;
+
+Router::plugin(
+    'LightStrap',
+    ['path' => '/lightstrap'],
+    function ($routes) {
+        $routes->fallbacks('DashedRoute');
+    }
+);
+

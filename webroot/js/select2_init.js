@@ -8,7 +8,7 @@ $(document).ready(function (){
             allowClear: true,
             placeholder: '',
             ajax: {
-            url: "/ajax/select2adminquery/" + table + "/" + colName + "/" + contain,
+            url: "/lightstrap/ajax/select2adminquery/" + table + "/" + colName + "/" + contain,
             dataType: 'json',
             quietMillis: 250,
             data: function (params) {
