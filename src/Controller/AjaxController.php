@@ -2,16 +2,18 @@
 namespace LightStrap\Controller;
 
 use App\Controller\AppController;
+use Cake\Core\Plugin;
+use Cake\Filesystem\File;
 use Cake\Utility\Inflector;
 
 class AjaxController extends AppController
 {
     /**
-     * select2adminquery method
+     * select2AdminQuery method
      *
      * @return void
      */
-    public function select2adminquery($table, $colName, $contain = null)
+    public function select2AdminQuery($table, $colName, $contain = null, $imageSrcCol = null)
     {
         if (!$this->request->is('ajax')) {
             return;
@@ -57,6 +59,16 @@ class AjaxController extends AppController
             $more = false;
         }
         
+        //if image not exists
+        if (!is_null($imageSrcCol) && $imageSrcCol != 'undefined') {
+            $pluginPath = Plugin::path('LightStrap');
+            foreach ($q as $item) {
+                $imageFile = new File(WWW_ROOT . 'files' . DS . $item->{$imageSrcCol});
+                if (!$imageFile->exists()) {
+                    $item->path = '../light_strap/img/no_image.png';
+                }
+            }
+        }
         $results = [
             "results" => $q->toArray(),
             "pagination" => [
@@ -65,5 +77,36 @@ class AjaxController extends AppController
         ];
         
         echo json_encode($results);
+    }
+    
+    /**
+     * select2GetImage method
+     *
+     * @return void
+     */
+    public function select2GetImage($table, $id, $imageSrcCol = null)
+    {
+        if (!$this->request->is('ajax')) {
+            return;
+        }
+        $this->autoRender = false;
+        $this->viewBuilder()->layout('ajax');
+        $this->loadModel($table);
+        
+        $q = $this->{$table}->find('all')
+            ->where(["$table.id" => $id]);
+        
+        //if image not exists
+        if (!is_null($imageSrcCol) && $imageSrcCol != 'undefined') {
+            $pluginPath = Plugin::path('LightStrap');
+            foreach ($q as $item) {
+                $imageFile = new File(WWW_ROOT . 'files' . DS . $item->{$imageSrcCol});
+                if (!$imageFile->exists()) {
+                    $item->path = '../light_strap/img/no_image.png';
+                }
+            }
+        }
+        
+        echo json_encode($q->toArray());
     }
 }
