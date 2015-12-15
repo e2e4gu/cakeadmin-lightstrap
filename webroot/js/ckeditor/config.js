@@ -35,4 +35,14 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+        
+        //ImageBrowser plugin.
+        config.extraPlugins = 'imageuploader';
+
+        //allow content tag
+        config .allowedContent = true;
+
+        //set css styles for ckeditor
+	var ref = location.protocol + '//' + location.host;
+	config.contentsCss = [ref + '/cache_css/article-combined.css', ref + '/light_strap/js/ckeditor/paddings.css'];
 };
